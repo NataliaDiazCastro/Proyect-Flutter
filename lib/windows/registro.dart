@@ -67,7 +67,8 @@ class RegistroPage extends State<Registro>{
                             shadowColor: Colors.transparent,
                           ),
                           onPressed: (){
-                            Navigator.pushNamed(context, Login.id);
+                            Navigator.of(context)
+                                .pushNamedAndRemoveUntil(Login.id, (Route<dynamic> route) => false);
                             setState(() {
                               textEmailController.clear();
                               textNombreController.clear();

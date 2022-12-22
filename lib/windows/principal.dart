@@ -102,9 +102,12 @@ class PrincipalPage extends State<Principal> {
           titleSpacing: 0.0,
           centerTitle: true,
           actions: [
-            IconButton(
+           IconButton(
               onPressed: (){
-                auth.cerrarSesion();
+                auth.cerrarSesion().whenComplete(() => {
+                Navigator.of(context)
+                    .pushNamedAndRemoveUntil(Login.id, (Route<dynamic> route) => false)
+                });
               },
               icon: Icon(Icons.door_back_door_outlined, size: 30.0)
             ),
