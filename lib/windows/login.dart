@@ -206,17 +206,59 @@ class LoginPage extends State<Login>{
                  height: 10.0,
                 ),
                 InkWell(
-                  onTap: (){
-
-                  },
-                  child: const SizedBox(
-                    height: 40.0,
-                    width: 40.0,
-                    child: Image(
-                        image:
-                        AssetImage('assets/google.png')),
-                  ),
-                )
+                      onTap: () async {
+                        User? user = await auth.loginGoogle();
+                        if(user != null){
+                          Navigator.pushNamed(context, Principal.id);
+                        }else {
+                          showDialog(
+                              context: context,
+                              builder: (_) {
+                                return AlertDialog(
+                                  backgroundColor: Color(0xFFDBDBDB),
+                                  title: Text('Error', style: TextStyle(color: Colors.black),),
+                                  content: Text('Vuelva a intentarlo.', style: TextStyle(color: Colors.black),),
+                                  actions: [
+                                    DecoratedBox(
+                                        decoration: BoxDecoration(
+                                            gradient: const LinearGradient(
+                                                colors: [
+                                                  Color(0xFFA44BFF),
+                                                  Color(0xFFDA48FF)
+                                                ],
+                                                begin: FractionalOffset(0.2, 0.0),
+                                                end: FractionalOffset(1.0, 0.6),
+                                                stops: [0.0, 0.6],
+                                                tileMode: TileMode.clamp
+                                            ),
+                                            borderRadius: BorderRadius.circular(12.0)
+                                        ),
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              onSurface: Colors.transparent,
+                                              shadowColor: Colors.transparent,
+                                            ),
+                                            onPressed: (){
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: Text('Volver', style: TextStyle(color: Colors.white),)
+                                        )
+                                    )
+                                  ],
+                                );
+                              }
+                          );
+                        }
+                      },
+                      child: const SizedBox(
+                        height: 40.0,
+                        width: 40.0,
+                        child: Image(
+                            image:
+                            AssetImage('assets/google.png')),
+                      ),
+                    )
               ],
             ),
           ),
