@@ -69,7 +69,8 @@ class Autenticacion {
         user = result.user!;
         return user;
       } on FirebaseAuthException catch(e){
-        return 'Error ---> $e';
+        print('Error ---> $e');
+        return null;
       }
     }
   }
