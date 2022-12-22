@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:parcial_dispositivos/provider/auth.services.dart';
 import 'package:parcial_dispositivos/windows/principal.dart';
 import 'package:parcial_dispositivos/windows/registro.dart';
